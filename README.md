@@ -4,6 +4,9 @@
 
 In this project I had to extract the data produced by the STEDI Step Trainer sensors and the mobile app, and curate them into a data lakehouse solution on AWS so that Data Scientists can train the learning model.
 To develop the solution for this project it was used  AWS IAM, AWS S3, AWS Glue, AWS Athena, Python, and Spark for sensor data that trains machine learning algorithms.
+Refer to the flowchart below to better understand the workflow. <br>
+![ flowchart display ](/Screenshots/workflow_flowchart.jpg)
+<br>
 
 ## Project Data
 
@@ -12,7 +15,10 @@ These JSON files are located under **[DataFiles](https://github.com/DIANASTI/Pro
 - *customer/landing*
 - *step_trainer/landing*
 - *accelerometer/landing*
-
+<br>
+Refer to the relationship diagram below to understand the desired state.
+![ dataset display ](/Screenshots/dataset.jpg)
+<br>
 
 ## Project Implementation
 A. **Landing Zone**
@@ -51,7 +57,8 @@ Tables data was loaded from S3 bucket that contains the data as JSON format. The
 
 ![ Data display ](/Screenshots/accelerometer_landing.png)
 
-
+<br>
+<br>
 
 B. **Trusted Zone**
 Using **AWS Glue Studio** I created 3 jobs that will transform raw data from landing zone based on project requirements.
@@ -64,6 +71,8 @@ Using **AWS Glue Studio** I created 3 jobs that will transform raw data from lan
   3. **StepTrainer_Landing_to_Trusted_project** - reads the Step Trainer IoT data stream (S3) and populates a Trusted Zone Glue Table called step_trainer_trusted that contains the Step Trainer Records data for customers who have accelerometer data and have agreed to share their data for research (customers_curated).
 ![ Graph display ](/Screenshots/job_StepTrainer_Landing_to_Trusted_project.png)
 
+<br>
+<br>
 
 C. **Curated Zone**
 Using **AWS Glue Studio** I created other 2 jobs that join multiple trusted data sources, and apply other transformations to create curated data for furthur analysis.
@@ -74,12 +83,13 @@ Using **AWS Glue Studio** I created other 2 jobs that join multiple trusted data
 ![ Graph display ](/Screenshots/job_MachineLearning_Curated_project.png)
 
 
+<br>
+<br>
 
-
-**NOTES**
-All tables definition can be found under **[DDL](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/DDL)**
-All Glue jobs scripts can be found under **[Python_scripts](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/GlueJobs)**
-For AWS Glue to act on your behalf to access S3 and other resources, you need to grant access to the Glue Service by creating an IAM Service Role that can be assumed by Glue:
+ **NOTES** <br>
+> All tables definition can be found under **[DDL](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/DDL)** <br>
+> All Glue jobs scripts can be found under **[Python_scripts](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/GlueJobs)** <br>
+> For AWS Glue to act on my behalf to access S3 and other resources, I had to grant access to the Glue Service by creating an IAM Service Role that can be assumed by Glue: <br>
 ```
 aws iam create-role --role-name my-glue-service-roleds --assume-role-policy-document '{
     "Version": "2012-10-17",
