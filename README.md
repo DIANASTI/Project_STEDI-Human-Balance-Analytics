@@ -75,12 +75,11 @@ Using **AWS Glue Studio** I created other 2 jobs that join multiple trusted data
 
 
 
-All tables definition can be found under **[DDL](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/DDL)**
-All Glue jobs scripts can be found under **[Python_scripts](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/GlueJobs)**
 
 **NOTES**
-1. For AWS Glue to act on your behalf to access S3 and other resources, you need to grant access to the Glue Service by creating an IAM Service Role that can be assumed by Glue:
-
+All tables definition can be found under **[DDL](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/DDL)**
+All Glue jobs scripts can be found under **[Python_scripts](https://github.com/DIANASTI/Project_STEDI-Human-Balance-Analytics/tree/main/GlueJobs)**
+For AWS Glue to act on your behalf to access S3 and other resources, you need to grant access to the Glue Service by creating an IAM Service Role that can be assumed by Glue:
 ```
 aws iam create-role --role-name my-glue-service-roleds --assume-role-policy-document '{
     "Version": "2012-10-17",
