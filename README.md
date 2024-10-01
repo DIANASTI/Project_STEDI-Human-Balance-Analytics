@@ -16,8 +16,10 @@ These JSON files are located under **[DataFiles](https://github.com/DIANASTI/Pro
 - *step_trainer/landing*
 - *accelerometer/landing*
 <br>
-Refer to the relationship diagram below to understand the desired state.
+Refer to the relationship diagram below to understand the desired state. <br>
+
 ![ dataset display ](/Screenshots/dataset.jpg)
+
 <br>
 
 ## Project Implementation
